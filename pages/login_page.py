@@ -33,4 +33,3 @@ class Login(BasePage):
         self.fill_email(email)
         self.fill_password(password)
         self.click_login_button()
-        self.wait_until_visible(MainPageStellarBurgers.MAIN_PAGE_TITLE)
