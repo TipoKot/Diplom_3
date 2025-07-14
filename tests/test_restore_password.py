@@ -49,4 +49,4 @@ class TestRestorePassword:
 
         forgot_password_page.click_toggle_password_visibility()
         # проверяем, что появилась обводка
-        forgot_password_page.is_password_field_highlighted
+        assert forgot_password_page.is_password_field_highlighted(), "Поле ввода пароля не подсветилось после клика"
