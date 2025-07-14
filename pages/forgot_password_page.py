@@ -12,11 +12,11 @@ class ForgotPassword(BasePage):
 
     @allure.step("Открываем страницу восстановления пароля")
     def open(self):
-        self.driver.get(f"{BASE_URL}/forgot-password")
+        self.open_url(f"{BASE_URL}/forgot-password")
 
     @allure.step("Заполняем поле почты")
     def fill_email(self, email):
-        self.driver.find_element(*self.EMAIL_INPUT).send_keys(email)
+        self.find_element(*self.EMAIL_INPUT).send_keys(email)
 
     @allure.step("Кликаем по кнопке 'Восстановить'")
     def click_restore_button(self):

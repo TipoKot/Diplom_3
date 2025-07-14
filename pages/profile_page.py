@@ -12,7 +12,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Открываем страницу профиля")
     def open(self):
-        self.driver.get(f"{BASE_URL}/account")
+        self.open_url(f"{BASE_URL}/profile")
 
     @allure.step("Переходим в раздел 'История заказов'")
     def go_to_order_history(self):
@@ -27,9 +27,7 @@ class ProfilePage(BasePage):
 
     @allure.step("Находим и возвращаем ID заказа из ЛК")
     def get_first_order_id(self):
-        first_card = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.FIRST_ORDER_CARD)
-        )
+        first_card = self.wait_until_visible(self.FIRST_ORDER_CARD)
 
         order_id_element = first_card.find_element(By.CSS_SELECTOR, "p.text_type_digits-default")
 

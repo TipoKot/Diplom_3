@@ -14,7 +14,7 @@ class Login(BasePage):
 
     @allure.step("Открываем страницу логина")
     def open(self):
-        self.driver.get(f"{BASE_URL}/login")
+        self.open_url(f"{BASE_URL}/login")
 
     @allure.step("Заполняем поле email")
     def fill_email(self, email):
@@ -33,6 +33,4 @@ class Login(BasePage):
         self.fill_email(email)
         self.fill_password(password)
         self.click_login_button()
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(MainPageStellarBurgers.BUILD_BURGER_TITLE)
-        )
+        self.wait_until_visible(MainPageStellarBurgers.MAIN_PAGE_TITLE)

@@ -21,7 +21,7 @@ class MainPageStellarBurgers(BasePage):
 
     @allure.step("Открываем главную страницу")
     def open(self):
-        self.driver.get(BASE_URL)
+        self.open_url(f"{BASE_URL}/")
 
     @allure.step("Кликаем по кнопке 'Личный кабинет'")
     def click_account_button(self):
@@ -38,9 +38,7 @@ class MainPageStellarBurgers(BasePage):
     @allure.step("Кликаем по булке")
     def click_bulka_1(self):
         self.click_element(self.BULKA_1)
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.INGREDIENT_POPUP)
-        )
+        self.wait_until_visible(self.INGREDIENT_POPUP)
 
     @allure.step("Закрываем всплывающее окно с деталями ингредиента")
     def close_ingredient_popup(self):
@@ -48,9 +46,7 @@ class MainPageStellarBurgers(BasePage):
 
     @allure.step("Добавляем ингредиент в заказ")
     def add_ingredient_to_order(self, ingredient_locator):
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(ingredient_locator)
-        )
+        self.wait_until_visible(ingredient_locator)
         source = self.driver.find_element(*ingredient_locator)
         target = self.driver.find_element(*self.BURGER_CONSTRUCTOR_BASKET)
         self.drag_and_drop_element(source, target)
@@ -61,10 +57,5 @@ class MainPageStellarBurgers(BasePage):
 
     @allure.step("Получаем ID заказа из всплывающего окна")
     def get_order_id_from_popup(self):
-        by, value = self.ORDER_POPUP_ORDER_ID
+        return self.wait_for_text_not_to_be(self.ORDER_POPUP_ORDER_ID, "9999")
 
-        order_id = WebDriverWait(self.driver, 10).until(
-            lambda driver: (text := driver.find_element(by, value).text.strip()) != "9999" and text
-        )
-
-        return order_id

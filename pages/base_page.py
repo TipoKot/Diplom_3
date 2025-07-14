@@ -10,6 +10,9 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
+    def open_url(self, url):
+        self.driver.get(url)
+
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
 
@@ -68,3 +71,25 @@ class BasePage:
                 simulateHTML5DragAndDrop(arguments[0], arguments[1]);
                 """
             self.driver.execute_script(script, source_element, target_element)
+
+    def wait_until_visible(self, locator, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_element_located(locator)
+        )
+
+    def get_text(self, locator, timeout=10) -> str:
+        element = WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_element_located(locator)
+        )
+        return element.text
+    
+    def wait_for_text_not_to_be(self, locator, unwanted_text) -> str:
+        by, value = locator
+
+        def condition(driver):
+            element = driver.find_element(by, value)
+            text = element.text.strip()
+            return text if text != unwanted_text else False
+
+        return WebDriverWait(self.driver, 10).until(condition)
+

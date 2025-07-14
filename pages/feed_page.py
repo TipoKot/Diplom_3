@@ -14,20 +14,16 @@ class Feed(BasePage):
 
     @allure.step("Открываем страницу Ленты заказов")
     def open(self):
-        self.driver.get(f"{BASE_URL}/feed")
+        self.open_url(f"{BASE_URL}/feed")
 
     @allure.step("Кликаем по карточке заказа")
     def click_order_card(self):
         self.click_element(self.ORDER_CARD)
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.ORDER_POPUP)
-        )
+        self.wait_until_visible(self.ORDER_POPUP)
 
     @allure.step("Ищем заказ по ID")
     def find_order_by_id(self, order_id):
-        WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.ORDER_CARD)
-        )
+        self.wait_until_visible(self.ORDER_CARD)
         orders = self.driver.find_elements(*self.ORDER_CARD)
         for order in orders:
             if order_id in order.text:
@@ -36,19 +32,12 @@ class Feed(BasePage):
     
     @allure.step("Получаем значение счётчика выполненных заказов")
     def get_counter_value(self) -> int:
-        counter_elem = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.ORDER_COUNTER)
-        )
-        text = counter_elem.text
+        text = self.get_text(self.ORDER_COUNTER)
         return int(text)
     
     @allure.step("Получаем значение счётчика выполненных заказов за сегодня")
     def get_today_counter_value(self) -> int:
-        today_counter_elem = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located(self.TODAY_ORDER_COUNTER)
-        )
-        text = today_counter_elem.text
-        return int(text)
+        return self.get_text(self.TODAY_ORDER_COUNTER)
     
     @allure.step("Проверяем, что заказ в работе")
     def is_order_in_progress(self, order_id):
