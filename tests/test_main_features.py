@@ -51,9 +51,7 @@ class TestMainFeatures:
         main_page.open()
         main_page.add_ingredient_to_order(main_page.BULKA_1)
 
-        counter = WebDriverWait(driver, 5).until(
-        EC.visibility_of_element_located(main_page.BULKA_1_COUNTER)
-        )
+        counter = main_page.wait_until_visible(main_page.BULKA_1_COUNTER)
         assert counter.text == "2", f"Ожидалось значение каунтера '2', но получили '{counter.text}'"
 
     # залогиненный пользователь может оформить заказ
@@ -68,4 +66,4 @@ class TestMainFeatures:
         main_page.add_ingredient_to_order(main_page.BULKA_1)
         main_page.click_submit_order()
 
-        assert EC.visibility_of_element_located(main_page.ORDER_POPUP), "Окно подтверждения заказа не появилось"
+        assert main_page.wait_until_visible(main_page.ORDER_POPUP), "Окно подтверждения заказа не появилось"
