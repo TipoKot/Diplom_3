@@ -57,7 +57,7 @@ class TestMainFeatures:
         assert counter.text == "2", f"Ожидалось значение каунтера '2', но получили '{counter.text}'"
 
     # залогиненный пользователь может оформить заказ
-    @allure.feature("Оформление заказа залогиненным пользователем")
+    @allure.title("Оформление заказа залогиненным пользователем")
     def test_order_as_logged_in_user(self, driver):
         login_page = Login(driver)
         login_page.open()

@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from data import browser_name
+from locators import OVERLAY
 
 class BasePage:
     def __init__(self, driver):
@@ -33,7 +34,7 @@ class BasePage:
 
     def wait_for_overlay_to_disappear(self):
         WebDriverWait(self.driver, 10).until_not(
-            EC.visibility_of_element_located((By.XPATH, "//*[contains(@class, 'Modal_modal_overlay__x2ZCr')]"))
+            EC.visibility_of_element_located(OVERLAY)
         )
 
     def fill_input(self, locator, text):
