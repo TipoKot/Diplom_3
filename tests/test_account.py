@@ -13,7 +13,7 @@ class TestAccount():
         main_page.click_account_button()
 
         # проверяем, что URL содержит /account
-        assert f"{BASE_URL}/login" in driver.current_url, "Не удалось перейти в раздел 'Личный кабинет'"
+        assert f"{BASE_URL}/login" in main_page.get_current_url, "Не удалось перейти в раздел 'Личный кабинет'"
         
     # переход в раздел «История заказов»
     @allure.title("Переход в раздел «История заказов»")
@@ -25,7 +25,7 @@ class TestAccount():
         profile_page = ProfilePage(driver)
         profile_page.open()
         profile_page.go_to_order_history()
-        assert f"{BASE_URL}/account/order-history" in driver.current_url, "Не удалось перейти в раздел 'История заказов'"
+        assert f"{BASE_URL}/account/order-history" in login_page.get_current_url, "Не удалось перейти в раздел 'История заказов'"
 
     # выход из аккаунта.
     @allure.title("Выход из аккаунта")
@@ -37,4 +37,4 @@ class TestAccount():
         profile_page = ProfilePage(driver)
         profile_page.open()
         profile_page.logout()
-        assert f"{BASE_URL}/login" in driver.current_url, "Не удалось выйти из аккаунта"
+        assert f"{BASE_URL}/login" in login_page.get_current_url, "Не удалось выйти из аккаунта"

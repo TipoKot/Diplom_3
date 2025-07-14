@@ -17,7 +17,7 @@ class TestRestorePassword:
 
         login_page.wait_for_overlay_to_disappear()
         login_page.click_element(RESTORE_PASSWORD_BUTTON)
-        assert f"{BASE_URL}/forgot-password" in driver.current_url, "Не удалось перейти на страницу восстановления пароля"
+        assert f"{BASE_URL}/forgot-password" in login_page.get_current_url, "Не удалось перейти на страницу восстановления пароля"
 
     # ввод почты и клик по кнопке «Восстановить»
     @allure.title("Ввод почты и клик по кнопке «Восстановить»")
@@ -34,7 +34,7 @@ class TestRestorePassword:
         WebDriverWait(driver, 5).until(
             EC.url_contains("/reset-password")
         )
-        assert f"{BASE_URL}/reset-password" in driver.current_url, "Не удалось перейти на страницу сброса пароля"
+        assert f"{BASE_URL}/reset-password" in forgot_password_page.get_current_url, "Не удалось перейти на страницу сброса пароля"
 
     # клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его.
     @allure.title("Клик по кнопке показать/скрыть пароль делает поле активным")

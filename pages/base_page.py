@@ -92,4 +92,7 @@ class BasePage:
             return text if text != unwanted_text else False
 
         return WebDriverWait(self.driver, 10).until(condition)
+    
+    def get_current_url(self):
+        return self.driver.current_url
 

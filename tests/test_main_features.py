@@ -15,7 +15,7 @@ class TestMainFeatures:
         main_page.click_constructor_button()
 
         # проверяем, что URL содержит /constructor
-        assert f"{BASE_URL}" in driver.current_url, "Не удалось перейти в раздел 'Конструктор'"
+        assert f"{BASE_URL}" in main_page.get_current_url, "Не удалось перейти в раздел 'Конструктор'"
 
     # переход по клику на «Лента заказов»
     @allure.feature("Клик по кнопке «Лента заказов»")
@@ -25,7 +25,7 @@ class TestMainFeatures:
         main_page.click_feed_button()
 
         # проверяем, что URL содержит /feed
-        assert f"{BASE_URL}/feed" in driver.current_url, "Не удалось перейти в раздел 'Лента заказов'"
+        assert f"{BASE_URL}/feed" in main_page.get_current_url, "Не удалось перейти в раздел 'Лента заказов'"
 
     # если кликнуть на ингредиент, появится всплывающее окно с деталями
     @allure.feature("Клик по ингредиенту")
