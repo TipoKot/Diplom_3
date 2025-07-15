@@ -9,6 +9,7 @@ class ProfilePage(BasePage):
     ORDER_HISTORY_BUTTON = (By.XPATH, "//a[text()='История заказов']")
     LOGOUT_BUTTON = (By.XPATH, "//button[text()='Выход']")
     FIRST_ORDER_CARD = (By.CSS_SELECTOR, "ul.OrderHistory_profileList__374GU li.OrderHistory_listItem__2x95r")
+    FIRST_ORDER_ID = (By.CSS_SELECTOR, "p.text_type_digits-default")
 
     @allure.step("Открываем страницу профиля")
     def open(self):
@@ -27,6 +28,6 @@ class ProfilePage(BasePage):
     def get_first_order_id(self):
         first_card = self.wait_until_visible(self.FIRST_ORDER_CARD)
 
-        order_id_element = first_card.find_element(By.CSS_SELECTOR, "p.text_type_digits-default")
+        order_id_element = first_card.find_element(*self.FIRST_ORDER_ID)
 
         return order_id_element.text
