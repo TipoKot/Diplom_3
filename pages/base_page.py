@@ -96,3 +96,7 @@ class BasePage:
     def get_current_url(self):
         return self.driver.current_url
 
+    def wait_for_url_to_be(self, expected_url, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            EC.url_to_be(expected_url)
+        )

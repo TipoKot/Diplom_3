@@ -47,8 +47,8 @@ class MainPageStellarBurgers(BasePage):
     @allure.step("Добавляем ингредиент в заказ")
     def add_ingredient_to_order(self, ingredient_locator):
         self.wait_until_visible(ingredient_locator)
-        source = self.driver.find_element(*ingredient_locator)
-        target = self.driver.find_element(*self.BURGER_CONSTRUCTOR_BASKET)
+        source = self.find(*ingredient_locator)
+        target = self.find(*self.BURGER_CONSTRUCTOR_BASKET)
         self.drag_and_drop_element(source, target)
 
     @allure.step("Оформляем заказ")

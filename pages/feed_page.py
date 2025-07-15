@@ -24,7 +24,7 @@ class Feed(BasePage):
     @allure.step("Ищем заказ по ID")
     def find_order_by_id(self, order_id):
         self.wait_until_visible(self.ORDER_CARD)
-        orders = self.driver.find_elements(*self.ORDER_CARD)
+        orders = self.find(*self.ORDER_CARD)
         for order in orders:
             if order_id in order.text:
                 return order
@@ -41,7 +41,7 @@ class Feed(BasePage):
     
     @allure.step("Проверяем, что заказ в работе")
     def is_order_in_progress(self, order_id):
-        orders = self.driver.find_elements(*self.ORDER_IN_PROGRESS)
+        orders = self.find(*self.ORDER_IN_PROGRESS)
         for order in orders:
             if order_id in order.text:
                 return True

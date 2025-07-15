@@ -21,9 +21,7 @@ class ProfilePage(BasePage):
     @allure.step("Выходим из аккаунта")
     def logout(self):
         self.click_element(self.LOGOUT_BUTTON)
-        WebDriverWait(self.driver, 10).until(
-            EC.url_to_be(f"{BASE_URL}/login")
-        )
+        self.wait_for_url_to_be(f"{BASE_URL}/login")
 
     @allure.step("Находим и возвращаем ID заказа из ЛК")
     def get_first_order_id(self):
