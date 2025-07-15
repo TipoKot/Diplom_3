@@ -14,7 +14,7 @@ class TestOrderFeed:
         feed_page = Feed(driver)
         feed_page.open()
         feed_page.click_order_card()
-        assert EC.visibility_of_element_located(feed_page.ORDER_POPUP), "Всплывающее окно с деталями заказа не открылось"
+        assert feed_page.wait_until_visible(feed_page.ORDER_POPUP), "Всплывающее окно с деталями заказа не открылось"
 
     # заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»,
     @allure.title("Проверка наличия заказа пользователя в ленте заказов")
