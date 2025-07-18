@@ -44,3 +44,8 @@ class Feed(BasePage):
             if order_id in order.text:
                 return True
         return False
+    
+    @allure.step("Ожидаем, что всплывающее окно с деталями заказа будет видимо")
+    def wait_until_order_popup_visible(self):
+        self.wait_until_visible(self.ORDER_POPUP)
+        return True

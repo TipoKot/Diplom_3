@@ -60,4 +60,8 @@ class MainPageStellarBurgers(BasePage):
     @allure.step("Получаем ID заказа из всплывающего окна")
     def get_order_id_from_popup(self):
         return self.wait_for_text_not_to_be(self.ORDER_POPUP_ORDER_ID, "9999")
-
+    
+    @allure.step("Ожидаем, что всплывающее окно с деталями заказа будет видимо")
+    def wait_until_order_popup_visible(self):
+        self.wait_until_visible(self.ORDER_POPUP)
+        return True

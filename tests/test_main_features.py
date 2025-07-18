@@ -65,4 +65,4 @@ class TestMainFeatures:
         main_page.add_bulka_1_to_order()
         main_page.click_submit_order()
 
-        assert main_page.wait_until_visible(main_page.ORDER_POPUP), "Окно подтверждения заказа не появилось"
+        assert main_page.wait_until_order_popup_visible(), "Окно подтверждения заказа не появилось"
