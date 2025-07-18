@@ -1,5 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from data import BASE_URL, browser_name
 from pages.base_page import BasePage
 
@@ -33,3 +35,9 @@ class ForgotPassword(BasePage):
     def is_password_field_highlighted(self):
         field_container = self.find(self.PASSWORD_INPUT_HIGHLIGHT)
         return "input_status_active" in field_container.get_attribute("class")
+    
+    @allure.step("Ждем, пока страница загрузится")
+    def wait_for_page_to_load(self):
+        WebDriverWait(self.driver, 5).until(
+            EC.url_contains("/reset-password")
+        )

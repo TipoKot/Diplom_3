@@ -3,9 +3,6 @@ import allure
 import random
 from pages.login_page import Login
 from pages.forgot_password_page import ForgotPassword
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from data import BASE_URL
 
 class TestRestorePassword:
@@ -30,9 +27,7 @@ class TestRestorePassword:
         forgot_password_page.click_restore_button()
 
         # ждем перехода на страницу сброса пароля
-        WebDriverWait(driver, 5).until(
-            EC.url_contains("/reset-password")
-        )
+        forgot_password_page.wait_for_page_to_load()
         assert f"{BASE_URL}/reset-password" in forgot_password_page.get_current_url, "Не удалось перейти на страницу сброса пароля"
 
     # клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его.
@@ -42,9 +37,7 @@ class TestRestorePassword:
         forgot_password_page.open()
 
         forgot_password_page.click_restore_button()
-        WebDriverWait(driver, 5).until(
-            EC.url_contains("/reset-password")
-        )
+        forgot_password_page.wait_for_page_to_load()
 
         forgot_password_page.click_toggle_password_visibility()
         # проверяем, что появилась обводка
