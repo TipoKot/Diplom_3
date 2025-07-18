@@ -2,8 +2,6 @@ import allure
 from data import BASE_URL
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 class Feed(BasePage):
     ORDER_CARD = (By.CLASS_NAME, "OrderHistory_listItem__2x95r")
