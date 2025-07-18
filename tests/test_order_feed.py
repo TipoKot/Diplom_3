@@ -3,7 +3,6 @@ from pages.feed_page import Feed
 from pages.login_page import Login
 from pages.profile_page import ProfilePage
 from pages.main_page import MainPageStellarBurgers
-from selenium.webdriver.support import expected_conditions as EC
 from data import test_user
 
 class TestOrderFeed:

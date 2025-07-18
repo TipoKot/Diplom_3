@@ -2,7 +2,6 @@ import allure
 from data import BASE_URL, test_user
 from pages.main_page import MainPageStellarBurgers
 from pages.login_page import Login
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class TestMainFeatures:
