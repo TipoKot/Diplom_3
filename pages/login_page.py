@@ -11,6 +11,7 @@ class Login(BasePage):
     EMAIL_INPUT = (By.XPATH, "//label[text()='Email']/following-sibling::input")
     PASSWORD_INPUT = (By.XPATH, "//label[text()='Пароль']/following-sibling::input")
     LOGIN_BUTTON = (By.XPATH, "//button[text()='Войти']")
+    RESTORE_PASSWORD_BUTTON = (By.XPATH, "//a[text()='Восстановить пароль']")
 
     @allure.step("Открываем страницу логина")
     def open(self):
@@ -33,3 +34,7 @@ class Login(BasePage):
         self.fill_email(email)
         self.fill_password(password)
         self.click_login_button()
+
+    @allure.step("Кликаем по кнопке 'Восстановить пароль'")
+    def click_restore_password_button(self):
+        self.click_element(self.RESTORE_PASSWORD_BUTTON)

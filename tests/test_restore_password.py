@@ -6,7 +6,6 @@ from pages.forgot_password_page import ForgotPassword
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from locators import RESTORE_PASSWORD_BUTTON
 from data import BASE_URL
 
 class TestRestorePassword:
@@ -16,7 +15,7 @@ class TestRestorePassword:
         login_page.open()
 
         login_page.wait_for_overlay_to_disappear()
-        login_page.click_element(RESTORE_PASSWORD_BUTTON)
+        login_page.click_restore_password_button()
         assert f"{BASE_URL}/forgot-password" in login_page.get_current_url, "Не удалось перейти на страницу восстановления пароля"
 
     # ввод почты и клик по кнопке «Восстановить»

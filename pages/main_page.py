@@ -51,6 +51,10 @@ class MainPageStellarBurgers(BasePage):
         target = self.find(*self.BURGER_CONSTRUCTOR_BASKET)
         self.drag_and_drop_element(source, target)
 
+    @allure.step("Добавляем ингредиент Булка 1 в заказ")
+    def add_bulka_1_to_order(self):
+        self.add_ingredient_to_order(self.BULKA_1)
+
     @allure.step("Оформляем заказ")
     def click_submit_order(self):
         self.click_element(self.SUBMIT_ORDER_BUTTON)

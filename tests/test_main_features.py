@@ -49,7 +49,7 @@ class TestMainFeatures:
     def test_add_ingredient_to_order(self, driver):
         main_page = MainPageStellarBurgers(driver)
         main_page.open()
-        main_page.add_ingredient_to_order(main_page.BULKA_1)
+        main_page.add_bulka_1_to_order()
 
         counter = main_page.wait_until_visible(main_page.BULKA_1_COUNTER)
         assert counter.text == "2", f"Ожидалось значение каунтера '2', но получили '{counter.text}'"
@@ -63,7 +63,7 @@ class TestMainFeatures:
 
         main_page = MainPageStellarBurgers(driver)
         main_page.open()
-        main_page.add_ingredient_to_order(main_page.BULKA_1)
+        main_page.add_bulka_1_to_order()
         main_page.click_submit_order()
 
         assert main_page.wait_until_visible(main_page.ORDER_POPUP), "Окно подтверждения заказа не появилось"

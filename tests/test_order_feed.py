@@ -45,7 +45,7 @@ class TestOrderFeed:
 
         main_page = MainPageStellarBurgers(driver)
         main_page.open()
-        main_page.add_ingredient_to_order(main_page.BULKA_1)
+        main_page.add_bulka_1_to_order()
         main_page.click_submit_order()
 
         feed_page = Feed(driver)
@@ -66,7 +66,7 @@ class TestOrderFeed:
 
         main_page = MainPageStellarBurgers(driver)
         main_page.open()
-        main_page.add_ingredient_to_order(main_page.BULKA_1)
+        main_page.add_bulka_1_to_order()
         main_page.click_submit_order()
 
         feed_page = Feed(driver)
@@ -84,7 +84,7 @@ class TestOrderFeed:
 
         main_page = MainPageStellarBurgers(driver)
         main_page.open()
-        main_page.add_ingredient_to_order(main_page.BULKA_1)
+        main_page.add_bulka_1_to_order()
         main_page.click_submit_order()
         order_id = main_page.get_order_id_from_popup()
 
